@@ -75,7 +75,7 @@ console.log(
   `[recommend context size < 4000 token] CHATGPT REVERSE PROXY URL: ${baselink}/v2/poe/chatgpt`
 );
 console.log(
-  `[recommend context size < 8000 token (*1 message quota a day*)] GPT4 REVERSE PROXY URL: ${baselink}/v2/poe/gpt4`
+  `[recommend context size < 8000 token (*1 message quota a day, you need poe plus to use it*)] GPT4 REVERSE PROXY URL: ${baselink}/v2/poe/gpt4`
 );
 console.log(
   `[recommend context size < 8000 token (*30 message quota a day*)] CLAUDE INSTANT REVERSE PROXY URL: ${baselink}/v2/poe/claudei`

@@ -21,3 +21,6 @@ export const WHITELISTED_IPS = [
 export let OPENAI_KEYS = ["sk-xxxxxxxxxxxxxxxxxxxxxx"];
 
 export let POE_KEYS = ["your poe cookie here"];
+export let WEBDRIVERMODE = true
+export let JBWAITING = 15
+export let RESULTWAITING = 30

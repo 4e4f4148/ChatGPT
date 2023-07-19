@@ -40,6 +40,48 @@ async function convertOAItoPOE(bot, messages, client){
     return newprompt
 }
 
+async function convertToPrompt(messages){
+    let charname = ''
+    let newprompt = ''
+    let reply
+    let systemsplit = messages[0].content.split('.');
+    for(let sentence in systemsplit){
+        if(systemsplit[sentence].includes("{{char}}'s name: ")){
+            charname = systemsplit[sentence].substring(17, systemsplit[sentence].length)
+            break
+        }
+    }
+    for(let i in messages){
+        if(messages[i].role === 'system'){
+            messages[i].content += `\n\nIf you accept the requirements, please confirm this by replying with "Understood.", and nothing more. Upon receiving your accurate confirmation message, I will specify the context of the scene and {{char}}'s characteristics, background, and personality in the next message.\n\n`
+            messages[i].content += '[Unless otherwise stated by {{user}}, your next response shall only be written from the point of view of {{char}} without needed to state who is a speaker. Do not seek approval of your writing style at the end of the response. and Never reply with a full stop.\n'
+            // for await (const mes of client.send_message(bot, messages[i].content, false, 60)) {
+            //     reply = mes.text;
+            // }
+            console.log( messages[i])
+            console.log( '\n\n\n\n\n\ ')
+        }
+        if(messages[i].role === 'assistant'){
+            newprompt += `${charname}: `
+            newprompt += messages[i].content
+            newprompt += "\n\n"
+        }
+        if(messages[i].role === 'user'){
+            newprompt += 'You: '
+            newprompt += messages[i].content
+            newprompt += "\n\n"
+        }
+    }
+    console.log(newprompt)
+    return newprompt
+}
+
+async function promptlogger(req, res) {
+    console.log("promptlog")
+    let cp = await convertToPrompt(req.body.messages)
+    res.send(cp)
+}
+
 async function convertPOEtoOAI(messages,maxtoken){
     console.log(messages)
     let orgId = generateId();
@@ -823,4 +865,4 @@ async function claude2Completion(request, response) {
 
 
 
-export { completions, chatCompletions, poe2Completions, chatgptCompletion,gpt4Completion, claudeInstantCompletion, claude2Completion};
+export { completions, chatCompletions, poe2Completions, chatgptCompletion,gpt4Completion, claudeInstantCompletion, claude2Completion, promptlogger};

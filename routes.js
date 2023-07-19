@@ -98,35 +98,6 @@ async function promptlogger(req, res) {
     res.send(cp)
 }
 
-async function convertPOEtoOAI(messages,maxtoken){
-    console.log(messages)
-    let orgId = generateId();
-    let messageout = messages
-    if(messages.includes(':'))
-        messageout = messages.split(":").splice(1)
-    let newresponse = {
-        id: orgId,
-        object: 'chat.completion',
-        created: Date.now(),
-        model: "gpt-3.5-turbo-0613",
-        choices: [
-            {
-              "index": 0,
-              "message": {
-                "role": "assistant",
-                "content": messageout
-              },
-              "finish_reason": "length"
-            }
-          ],
-        "usage": {
-            "prompt_tokens": 0,
-            "completion_tokens": maxtoken,
-            "total_tokens": maxtoken
-        }
-    }
-    console.log(messageout)
-    return newresponse
 async function convertPOEtoOAI(messages, maxtoken) {
   console.log(messages);
   let orgId = generateId();
@@ -904,5 +875,5 @@ export {
   chatgptCompletion,
   gpt4Completion,
   claudeInstantCompletion,
-  claude2Completion,
-, promptlogger};
+  claude2Completion
+}

@@ -9,7 +9,7 @@ import {
   gpt4Completion,
   claude2Completion,
   claudeInstantCompletion,
-  promptlogger
+  // promptlogger
 } from "./routes.js";
 
 import {
@@ -77,33 +77,32 @@ const { url, connections, child, stop } = tunnel({
 });
 let baselink = await url;
 
-app.post("/v2/driver/sage/chat/completions", sagedriverCompletion);
-console.log(
-  `Sage driver: http://localhost:${SERVER_PORT}/v2/driver/sage`
-);
-
-console.log(
-  `Sage driver proxy url: ${baselink}/v2/driver/sage`
-);
+// app.post("/v2/driver/sage/chat/completions", sagedriverCompletion);
 // console.log(
-//   `[recommend context size < 3000 token] Sage REVERSE PROXY URL: ${baselink}/v2/poe/sage`
-// );
-// console.log(
-//   `[recommend context size < 4000 token] CHATGPT REVERSE PROXY URL: ${baselink}/v2/poe/chatgpt`
-// );
-// console.log(
-//   `[recommend context size < 8000 token (*1 message quota a day, you need poe plus to use it*)] GPT4 REVERSE PROXY URL: ${baselink}/v2/poe/gpt4`
-// );
-// console.log(
-//   `[recommend context size < 8000 token (*30 message quota a day*)] CLAUDE INSTANT REVERSE PROXY URL: ${baselink}/v2/poe/claudei`
-// );
-// console.log(
-//   `[recommend context size < 8000 token (*30 message quota a day*)] CLAUDE2 REVERSE PROXY URL: ${baselink}/v2/poe/claude2`
+//   `Sage driver: http://localhost:${SERVER_PORT}/v2/driver/sage`
 // );
 
 // console.log(
-//   `PLOGGER: ${baselink}/v2/plogger`
+//   `Sage driver proxy url: ${baselink}/v2/driver/sage`
 // );
+
+
+console.log(
+  `[recommend context size < 3000 token] Sage REVERSE PROXY URL: ${baselink}/v2/poe/sage`
+);
+console.log(
+  `[recommend context size < 4000 token] CHATGPT REVERSE PROXY URL: ${baselink}/v2/poe/chatgpt`
+);
+console.log(
+  `[recommend context size < 8000 token (*1 message quota a day, you need poe plus to use it*)] GPT4 REVERSE PROXY URL: ${baselink}/v2/poe/gpt4`
+);
+console.log(
+  `[recommend context size < 8000 token (*30 message quota a day*)] CLAUDE INSTANT REVERSE PROXY URL: ${baselink}/v2/poe/claudei`
+);
+console.log(
+  `[recommend context size < 8000 token (*30 message quota a day*)] CLAUDE2 REVERSE PROXY URL: ${baselink}/v2/poe/claude2`
+);
+
 
 console.log(`Proxy is running on PORT ${SERVER_PORT} ...`);
 

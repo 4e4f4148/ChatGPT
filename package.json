@@ -27,6 +27,8 @@
     "node-html-parser": "^6.1.5",
     "openai": "3.2.1",
     "selenium-webdriver": "^4.10.0",
+    "user-agents": "^1.0.1444",
+    "useragent": "^2.3.0",
     "ws": "^8.13.0"
   }
 }

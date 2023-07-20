@@ -16,7 +16,7 @@ import {
   sagedriverCompletion,
 } from "./driverroutes.js";
 import { corsMiddleware, rateLimitMiddleware } from "./middlewares.js";
-import { DEBUG, SERVER_PORT } from "./config.js";
+import { DEBUG, SERVER_PORT, WEBDRIVERMODE } from "./config.js";
 import { tunnel } from "cloudflared";
 
 let app = express();
@@ -77,14 +77,17 @@ const { url, connections, child, stop } = tunnel({
 });
 let baselink = await url;
 
-// app.post("/v2/driver/sage/chat/completions", sagedriverCompletion);
-// console.log(
-//   `Sage driver: http://localhost:${SERVER_PORT}/v2/driver/sage`
-// );
+app.post("/v2/driver/sage/chat/completions", sagedriverCompletion);
+if(WEBDRIVERMODE){
+  console.log(
+  `Sage driver: http://localhost:${SERVER_PORT}/v2/driver/sage`
+);
 
-// console.log(
-//   `Sage driver proxy url: ${baselink}/v2/driver/sage`
-// );
+console.log(
+  `Sage driver proxy url: ${baselink}/v2/driver/sage`
+);
+}
+
 
 
 console.log(

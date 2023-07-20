@@ -11,6 +11,7 @@ var options = new edge.Options();
 
 // configure browser options ...
 
+console.log(WEBDRIVERMODE)
 if(WEBDRIVERMODE){
 var driver = edge.Driver.createSession(options, service);
 
